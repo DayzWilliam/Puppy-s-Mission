@@ -7,6 +7,11 @@ public class PauseManager : MonoBehaviour
 
     private bool isPaused = false;
 
+    void Start()
+    {
+        Resume();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

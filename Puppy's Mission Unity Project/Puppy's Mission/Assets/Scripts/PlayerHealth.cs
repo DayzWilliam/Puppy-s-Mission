@@ -10,11 +10,17 @@ public class PlayerHealth : MonoBehaviour
     [Header("Configuração")]
     public int maxHealth = 5;
     private int currentHealth;
+    public Rigidbody2D rg;
+    private CharacterController2D characterController;
+
 
     private List<GameObject> hearts = new List<GameObject>();
 
     void Start()
     {
+        rg = GetComponent<Rigidbody2D>();
+        characterController = GetComponent<CharacterController2D>();
+        
         currentHealth = maxHealth;
         GenerateHearts();
     }
@@ -34,6 +40,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        rg.linearVelocity += new Vector2(-50, 10);
+
         currentHealth = Mathf.Max(currentHealth - amount, 0);
         UpdateHeartsVisual();
     }
